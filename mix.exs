@@ -12,7 +12,7 @@ defmodule BambooPhoenix.MixProject do
       source_url: @project_url,
       homepage_url: @project_url,
       start_permanent: Mix.env() == :prod,
-      description: "Bamboo library to use Phoenix for rendering emails",
+      description: "Use Phoenix to rendering your Bamboo emails",
       package: package(),
       docs: [main: "readme", extras: ["README.md"]],
       deps: deps()
