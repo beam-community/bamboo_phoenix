@@ -23,7 +23,7 @@ your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:bamboo_phoenix, "~> 1.0.0"}
+    {:bamboo_phoenix, "~> 0.1.0"}
   ]
 end
 ```
