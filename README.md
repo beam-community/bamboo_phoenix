@@ -1,21 +1,63 @@
-# BambooPhoenix
+# Bamboo.Phoenix [![Circle CI](https://circleci.com/gh/thoughtbot/bamboo_phoenix/tree/master.svg?style=svg)](https://circleci.com/gh/thoughtbot/bamboo_phoenix/tree/master)
 
-**TODO: Add description**
+---
+
+**This README follows `main`, which may not be the currently published
+version!** Use [the docs for the published version of
+Bamboo.Phoenix](https://hexdocs.pm/bamboo_phoenix).
+
+---
+
+**Bamboo & Bamboo.Phoenix are part of the [thoughtbot Elixir family][elixir-phoenix] of projects.**
+
+`Bamboo.Phoenix` is a library to use Phoenix's View rendering layer for your
+[Bamboo] emails.
+
+[Bamboo]: https://github.com/thoughtbot/bamboo
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `bamboo_phoenix` to your list of dependencies in `mix.exs`:
+Make sure you have `Bamboo` installed. To install `Bamboo.Phoenix`, add it to
+your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:bamboo_phoenix, "~> 0.1.0"}
+    {:bamboo_phoenix, "~> 1.0.0"}
   ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/bamboo_phoenix](https://hexdocs.pm/bamboo_phoenix).
+## Contributing
 
+Before opening a pull request, please open an issue first.
+
+Once we've decided how to move forward with a pull request:
+
+    $ git clone https://github.com/thoughtbot/bamboo_phoenix.git
+    $ cd bamboo_phoenix
+    $ mix deps.get
+    $ mix test
+    $ mix format
+
+Once you've made your additions and `mix test` passes, go ahead and open a PR!
+
+We run the test suite as well as formatter checks on CI. Make sure you are using
+the Elixir version defined in the `.tool-versions` file to have consistent
+formatting with what's being run on CI.
+
+## About thoughtbot
+
+![thoughtbot](http://presskit.thoughtbot.com/images/thoughtbot-logo-for-readmes.svg)
+
+Bamboo & Bamboo.Phoenix area maintained and funded by thoughtbot, inc.
+The names and logos for thoughtbot are trademarks of thoughtbot, inc.
+
+We love open-source software, Elixir, and Phoenix. See [our other Elixir
+projects][elixir-phoenix], or [hire our Elixir Phoenix development team][hire]
+to design, develop, and grow your product.
+
+[elixir-phoenix]: https://thoughtbot.com/services/elixir-phoenix?utm_source=github
+[hire]: https://thoughtbot.com?utm_source=github
+
+[elixir-phoenix]: https://thoughtbot.com/services/elixir-phoenix?utm_source=github
