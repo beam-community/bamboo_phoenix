@@ -22,7 +22,7 @@ jobs:
             - v1-build-cache-{{ .Branch }}-{{ checksum ".tool-versions" }}
             - v1-build-cache-{{ .Branch }}
             - v1-build-cache
-      - run: mix do deps.get, compile --warnings-as-errors
+      - run: mix do deps.get, compile
       - save_cache:
           key: v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
           paths: "deps"
