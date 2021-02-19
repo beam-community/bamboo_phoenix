@@ -1,19 +1,12 @@
 # Bamboo.Phoenix [![Circle CI](https://circleci.com/gh/thoughtbot/bamboo_phoenix/tree/master.svg?style=svg)](https://circleci.com/gh/thoughtbot/bamboo_phoenix/tree/master)
 
----
-
-**This README follows `main`, which may not be the currently published
-version!** Use [the docs for the published version of
-Bamboo.Phoenix](https://hexdocs.pm/bamboo_phoenix).
-
----
-
 **Bamboo & Bamboo.Phoenix are part of the [thoughtbot Elixir family][elixir-phoenix] of projects.**
 
 `Bamboo.Phoenix` is a library to use Phoenix's View rendering layer for your
-[Bamboo] emails.
+[Bamboo] emails. See the [docs] for more information.
 
 [Bamboo]: https://github.com/thoughtbot/bamboo
+[docs]: https://hexdocs.pm/bamboo_phoenix
 
 ## Installation
 
