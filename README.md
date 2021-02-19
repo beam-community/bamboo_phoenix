@@ -3,10 +3,10 @@
 **Bamboo & Bamboo.Phoenix are part of the [thoughtbot Elixir family][elixir-phoenix] of projects.**
 
 `Bamboo.Phoenix` is a library to use Phoenix's View rendering layer for your
-[Bamboo] emails. See the [docs] for more information.
+[Bamboo] emails. After installation, see the [Bamboo.Phoenix docs] for more information.
 
 [Bamboo]: https://github.com/thoughtbot/bamboo
-[docs]: https://hexdocs.pm/bamboo_phoenix
+[Bamboo.Phoenix docs]: https://hexdocs.pm/bamboo_phoenix/Bamboo.Phoenix.html
 
 ## Installation
 
@@ -52,5 +52,3 @@ to design, develop, and grow your product.
 
 [elixir-phoenix]: https://thoughtbot.com/services/elixir-phoenix?utm_source=github
 [hire]: https://thoughtbot.com?utm_source=github
-
-[elixir-phoenix]: https://thoughtbot.com/services/elixir-phoenix?utm_source=github
