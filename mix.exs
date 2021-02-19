@@ -2,7 +2,7 @@ defmodule BambooPhoenix.MixProject do
   use Mix.Project
 
   @project_url "https://github.com/thoughtbot/bamboo_phoenix"
-  @version "0.1.0"
+  @version "0.2.0"
 
   def project do
     [
@@ -37,7 +37,7 @@ defmodule BambooPhoenix.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:bamboo, ">= 1.7.1"},
+      {:bamboo, ">= 2.0.0"},
       {:phoenix, ">= 1.3.0"},
       {:phoenix_html, "~> 2.2", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
