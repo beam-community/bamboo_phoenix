@@ -37,7 +37,7 @@ defmodule BambooPhoenix.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:bamboo, git: "https://github.com/thoughtbot/bamboo.git", branch: "master"},
+      {:bamboo, ">= 1.7.1"},
       {:phoenix, ">= 1.3.0"},
       {:phoenix_html, "~> 2.2", only: :test}
     ]
