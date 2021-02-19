@@ -1,4 +1,4 @@
-# Bamboo.Phoenix [![Circle CI](https://circleci.com/gh/thoughtbot/bamboo_phoenix/tree/master.svg?style=svg)](https://circleci.com/gh/thoughtbot/bamboo_phoenix/tree/master)
+# Bamboo.Phoenix [![Circle CI](https://circleci.com/gh/thoughtbot/bamboo_phoenix/tree/main.svg?style=svg)](https://circleci.com/gh/thoughtbot/bamboo_phoenix/tree/main)
 
 **Bamboo & Bamboo.Phoenix are part of the [thoughtbot Elixir family][elixir-phoenix] of projects.**
 
