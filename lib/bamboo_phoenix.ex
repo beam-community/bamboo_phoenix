@@ -120,7 +120,7 @@ defmodule Bamboo.Phoenix do
           <link rel="stylesheet" href="<%= static_url(MyApp.Endpoint, "/css/email.css") %>">
         </head>
         <body>
-          <%= render @view_module, @view_template, assigns %>
+          <%= @inner_content %>
         </body>
       </html>
 
