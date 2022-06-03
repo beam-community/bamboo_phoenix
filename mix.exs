@@ -8,7 +8,7 @@ defmodule BambooPhoenix.MixProject do
     [
       app: :bamboo_phoenix,
       version: @version,
-      elixir: "~> 1.8",
+      elixir: "~> 1.12",
       source_url: @project_url,
       homepage_url: @project_url,
       start_permanent: Mix.env() == :prod,
@@ -37,10 +37,10 @@ defmodule BambooPhoenix.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:bamboo, ">= 2.0.0"},
-      {:phoenix, ">= 1.3.0"},
-      {:phoenix_html, "~> 2.2", only: :test},
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+      {:bamboo, ">= 2.2.0"},
+      {:phoenix, "~> 1.6"},
+      {:phoenix_html, "~> 3.1", only: :test},
+      {:ex_doc, "~> 0.20", only: :dev, runtime: false}
     ]
   end
 end
