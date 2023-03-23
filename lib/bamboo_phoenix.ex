@@ -120,7 +120,7 @@ defmodule Bamboo.Phoenix do
           <link rel="stylesheet" href="<%= static_url(MyApp.Endpoint, "/css/email.css") %>">
         </head>
         <body>
-          <%= render @view_module, @view_template, assigns %>
+          <%= render @view_module, @template, assigns %>
         </body>
       </html>
 
@@ -134,7 +134,7 @@ defmodule Bamboo.Phoenix do
 
   import Bamboo.Email, only: [put_private: 3]
 
-  defmacro __using__(view: view_module) do
+  defmacro __using__(component: component_module) do
     verify_phoenix_dep()
 
     quote do
@@ -149,7 +149,7 @@ defmodule Bamboo.Phoenix do
       "welcome_email.text" or "welcome_email.html". Scroll to the top for more examples.
       """
       def render(email, template, assigns \\ []) do
-        Bamboo.Phoenix.render_email(unquote(view_module), email, template, assigns)
+        Bamboo.Phoenix.render_email(unquote(component_module), email, template, assigns)
       end
     end
   end
@@ -224,8 +224,8 @@ defmodule Bamboo.Phoenix do
   """
   def put_layout(email, {layout, template}) do
     email
-    |> put_text_layout({layout, to_string(template) <> ".text"})
-    |> put_html_layout({layout, to_string(template) <> ".html"})
+    |> put_text_layout({layout, to_string(template) <> "_text"})
+    |> put_html_layout({layout, to_string(template) <> "_html"})
   end
 
   @doc """
@@ -236,11 +236,11 @@ defmodule Bamboo.Phoenix do
   end
 
   @doc false
-  def render_email(view, email, template, assigns) do
+  def render_email(component, email, template, assigns) do
     email
     |> put_default_layouts
     |> merge_assigns(assigns)
-    |> put_view(view)
+    |> put_component(component)
     |> put_template(template)
     |> render
   end
@@ -259,16 +259,19 @@ defmodule Bamboo.Phoenix do
     email |> Map.put(:assigns, assigns)
   end
 
-  defp put_view(email, view_module) do
-    email |> put_private(:view_module, view_module)
+  defp put_component(email, component_module) do
+    email |> put_private(:component_module, component_module)
   end
 
-  defp put_template(email, view_template) do
-    email |> put_private(:view_template, view_template)
+  defp put_template(email, template) do
+    email |> put_private(:template, template)
   end
 
-  defp render(%{private: %{view_template: template}} = email) when is_atom(template) do
-    render_html_and_text_emails(email)
+  defp render(%{private: %{template: template}} = email) when is_atom(template) do
+    template = Atom.to_string(template)
+
+    %{email | private: %{email.private | template: template}}
+    |> render_html_and_text_emails()
   end
 
   defp render(email) do
@@ -276,21 +279,19 @@ defmodule Bamboo.Phoenix do
   end
 
   defp render_html_and_text_emails(email) do
-    view_template = Atom.to_string(email.private.view_template)
-
     email
-    |> Map.put(:html_body, render_html(email, view_template <> ".html"))
-    |> Map.put(:text_body, render_text(email, view_template <> ".text"))
+    |> Map.put(:html_body, render_html(email, email.private.template <> "_html"))
+    |> Map.put(:text_body, render_text(email, email.private.template <> "_text"))
   end
 
   defp render_text_or_html_email(email) do
-    template = email.private.view_template
+    template = email.private.template
 
     cond do
-      String.ends_with?(template, ".html") ->
+      String.ends_with?(template, "_html") ->
         email |> Map.put(:html_body, render_html(email, template))
 
-      String.ends_with?(template, ".text") ->
+      String.ends_with?(template, "_text") ->
         email |> Map.put(:text_body, render_text(email, template))
 
       true ->
@@ -309,9 +310,10 @@ defmodule Bamboo.Phoenix do
     # Phoenix uses the assigns.layout to determine what layout to use
     assigns = Map.put(email.assigns, :layout, email.private.html_layout)
 
-    Phoenix.View.render_to_string(
-      email.private.view_module,
+    Phoenix.Template.render_to_string(
+      email.private.component_module,
       template,
+      "html",
       assigns
     )
   end
@@ -319,9 +321,10 @@ defmodule Bamboo.Phoenix do
   defp render_text(email, template) do
     assigns = Map.put(email.assigns, :layout, email.private.text_layout)
 
-    Phoenix.View.render_to_string(
-      email.private.view_module,
+    Phoenix.Template.render_to_string(
+      email.private.component_module,
       template,
+      "html",
       assigns
     )
   end

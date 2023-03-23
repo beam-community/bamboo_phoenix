@@ -1,12 +1,18 @@
 defmodule Bamboo.PhoenixTest do
   use ExUnit.Case
 
-  defmodule PhoenixLayoutView do
-    use Phoenix.View, root: "test/support/templates", namespace: Bamboo.PhoenixLayoutView
+  defmodule PhoenixLayouts do
+    use Phoenix.Component
+
+    embed_templates "support/templates/phoenix_layout/*.html", suffix: "_html"
+    embed_templates "support/templates/phoenix_layout/*.text", suffix: "_text"
   end
 
-  defmodule EmailView do
-    use Phoenix.View, root: "test/support/templates", namespace: Bamboo.EmailView
+  defmodule EmailHTML do
+    use Phoenix.Component
+
+    embed_templates "support/templates/email/*.html", suffix: "_html"
+    embed_templates "support/templates/email/*.text", suffix: "_text"
 
     def function_in_view do
       "function used in Bamboo.TemplateTest but needed because template is compiled"
@@ -14,11 +20,11 @@ defmodule Bamboo.PhoenixTest do
   end
 
   defmodule Email do
-    use Bamboo.Phoenix, view: EmailView
+    use Bamboo.Phoenix, component: EmailHTML
 
     def text_and_html_email_with_layout do
       new_email()
-      |> put_layout({PhoenixLayoutView, :app})
+      |> put_layout({PhoenixLayouts, :app})
       |> render(:text_and_html_email)
     end
 
@@ -40,12 +46,12 @@ defmodule Bamboo.PhoenixTest do
 
     def html_email do
       new_email()
-      |> render("html_email.html")
+      |> render("html_email_html")
     end
 
     def text_email do
       new_email()
-      |> render("text_email.text")
+      |> render("text_email_text")
     end
 
     def no_template do
@@ -55,7 +61,7 @@ defmodule Bamboo.PhoenixTest do
 
     def invalid_template do
       new_email()
-      |> render("template.foobar")
+      |> render("template_foobar")
     end
   end
 
@@ -102,7 +108,7 @@ defmodule Bamboo.PhoenixTest do
   end
 
   test "render/2 raises if template doesn't exist" do
-    assert_raise Phoenix.Template.UndefinedError, fn ->
+    assert_raise ArgumentError, fn ->
       Email.no_template()
     end
   end
