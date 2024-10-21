@@ -8,7 +8,7 @@ defmodule BambooPhoenix.MixProject do
     [
       app: :bamboo_phoenix,
       version: @version,
-      elixir: "~> 1.8",
+      elixir: "~> 1.16",
       source_url: @project_url,
       homepage_url: @project_url,
       start_permanent: Mix.env() == :prod,
